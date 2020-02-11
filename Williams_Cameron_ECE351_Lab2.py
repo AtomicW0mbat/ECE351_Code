@@ -86,7 +86,7 @@ plt.subplot(2, 1, 2)
 plt.plot(t, y)
 plt.grid()
 plt.ylabel('y(t)')
-plt.title('P2T2: Figure 2 Plotted')
+plt.title('P2T3: Figure 2 Plotted')
 
 #%% Part 3
 t = np.arange(-10, 5+ steps, steps)
