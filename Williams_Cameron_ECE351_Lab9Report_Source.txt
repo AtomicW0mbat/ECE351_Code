@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cameron Williams          %
+% ECE 351-51                %
+% Lab Number 9              %
+% 7 April 2020              %
+% Instructor Philip Hagen   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+% Language and font encoding
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{rotating}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{appendix}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{gensymb}
+\usepackage{amssymb}
+\usepackage[final]{pdfpages}
+
+% Sets page size and margins
+\usepackage[a4paper, margin=1in]{geometry}
+
+%Line Spacing
+\setstretch{1.5}
+
+%-------------------Begin Editing Here---------------------
+%Info for Title Page
+\title{Fast Fourier Transform}
+\author{Cameron Williams\\ECE 351-51\\Lab Report 9}
+\date{7 April 2020}
+\begin{document}
+
+%Make a Title Page
+\vspace{\fill}
+\maketitle
+\vspace{\fill}
+\clearpage
+
+\newpage
+%Introduction
+\section{Introduction}
+    \par The objective of this lab was to become familiar with the use of fast Fourier transforms using Python.
+
+%Methodology
+\section{Methodology}
+    \par I started this lab by creating a user-defined fft() function in my Python script (submitted with this report). I used the example code for the fast fourier transform provided in the lab handout as a guide. I used the functions $cos(2\pi t)$, $5sin(2\pi t)$, and $2cos(2\pi 2t) + sin^2((2\pi 6t)+3)$ to creat the plots for Task 1, Task 2, and Task 3 respectively. For each of these, I used the sampling frequency fs=100 and scaled the axes on the respective plots appropriately. The plots may be seen in the results section. As part of Task 4, I created a second user-defined function called fft\_clean(). This function works almost exactly the same as fft, but sets the phase shift of any element with a corresponding magnitude less than 1e-10 to zero. This cleans up the appearance of many of the plots. I then recreated the plots the previous plots with fft\_clean(). These plots may also bay seen in the Results section. Finally, for Task 5, I used my code from Lab 8 to recreate the square wave approximation with N=15 and ran the result through the fft\_clean() function. A plot of the result may be seen in the Results section.
+    
+\newpage
+%Results
+\section*{Results}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_1.png}
+\caption{Plots for Task 1.}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_2.png}
+\caption{Plots for Task 2.}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_3.png}
+\caption{Plots for Task 3.}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_4.png}
+\caption{Task 1 Plots redone for Task 4.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_5.png}
+\caption{Task 2 Plots redone for Task 4}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_6.png}
+\caption{Task 3 Plots redone for Task 4.}
+\end{figure}
+
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.45]{include/Figure_7.png}
+\caption{Task 5 plots.}
+\end{figure}
+
+\newpage
+%Questions
+\section*{Questions}
+
+\begin{enumerate}
+    \item What happens if $fs$ is lower? If it is higher? $fs$ in your report must span a few orders of magnitude.
+\end{enumerate}
+    \par With fs set lower (I tried 10) the resolution of the output plot is lower and there are far fewer phase shift delta functions in the bottom plots. With fs set higher (I tried 1000), the resolution is improved and there are a lot more phase shift delta functions in the bottom plots. Finally, I tried fs=10000. The larger fs is, the longer the run time and at fs=10000 it took over 10 minutes. The phase shift output plot was so crowded with delta functions that it looked solid blue.
+    
+\begin{enumerate}[resume]
+    \item What difference does eliminating the small phase magnitudes make?
+\end{enumerate}
+    \par In terms of the plots, it makes them much more readable. In terms of the Fourier transform results themselves, though it eliminates many of the terms contributing to the output, the change is negligible since the magnitude lower limit specified (1e-10) is so small.
+    
+\begin{enumerate}[resume]
+    \item Verify your results from Tasks 1 and 2 using the Fourier transforms of cosine and sine. Explain why your results are correct. You will need the transforms in terms of Hz, not rad/s. For example, the Fourier transform of cosine (in Hz) is:
+    $$ \mathcal{F}\{ cos(2\pi f_0 t) \} = \frac{1}{2}[ \delta(f-f_0) + \delta(f+f_0) ] $$
+\end{enumerate}
+    \par As described above, the Fourier transform of cosine in Hz results in two delta functions, one negative and one positive corresponding to the frequency of the function with a magnitude equal to half of the coefficient in front of the cosine function. The sine function results in similar delta functions appearing when transformed. The difference between the sine and cosine fourier transforms is the phase shifting. As seen in the fft\_clean() result of cosine, there is no phase shift. This makes sense since cosine has no imaginary components. The sine function does on the other hand, resulting in two delta functions appearing in the phase shift (one negative, one positive).
+    
+\begin{enumerate}[resume]
+    \item Leave any feedback on the clarity/usefulness of the purpose, deliverables, and expectations for this lab.
+\end{enumerate}
+    \par The expectations for this lab were expressed clearly in the lab handout.
+
+\end{document}
