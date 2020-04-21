@@ -1,8 +1,8 @@
 #############################
 # Cameron Williams          #
 # ECE 351-51                #
-# Lab Number 10             #
-# 7 April 2020              #
+# Lab Number 11             #
+# 14 April 2020             #
 # Instructor Philip Hagen   #
 #############################
 
